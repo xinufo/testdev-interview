@@ -6,7 +6,7 @@
 
 ## Hashtable
 
-key和value不允许为NULL。是线程安全的，因为在每个方法上都加了synchronized关键字，因为synchronized方法锁住的是this对象所以并发度不高。
+key和value不允许为NULL。是线程安全的，因为在每个方法上都加了synchronized关键字，因为synchronized方法锁住的是this对象所以并发度不高。table属性在创建时即完成初始化
 
 ### get
 
@@ -22,7 +22,7 @@ key和value不允许为NULL。是线程安全的，因为在每个方法上都�
 
 ## HashMap
 
-key和value允许为NULL（因为HashMap中对NULL做了特殊处理），不是线程安全的。
+key和value允许为NULL（因为HashMap中对NULL做了特殊处理），不是线程安全的，table属性在创建时仍保持为null，仅在第一次写入时才进行初始化，这么做是为了防止第一次写入（例如putAll操作）就出发扩容。
 
 ### get
 
